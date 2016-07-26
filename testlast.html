@@ -12,12 +12,12 @@
 
     <script type="text/javascript">
         function onLinkedInLoad() {
-            IN.Event.on(IN, "auth", onLinkedInLoad);
+            IN.Event.on(IN, "systemReady", onLinkedInLoad);
             console.log("On auth");
         }
         function onLinkedInLoad() {
             
-            var cpnyID = 2414183; //LinkedIn's testDevCo
+            var cpnyID = 422976; //LinkedIn's testDevCo
             IN.API.Raw("/companies/" + cpnyID + "/updates?event-type=status-update&start=0&count=10&format=json")
                 .result(displayCompanyUpdates);
                 console.log("After auth");
