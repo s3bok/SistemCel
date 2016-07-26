@@ -12,10 +12,10 @@
 
     <script type="text/javascript">
         function onLinkedInLoad() {
-            IN.Event.on(IN, "auth", onLinkedInAuth);
+            IN.Event.on(IN, "auth", onLinkedInLoad);
             console.log("On auth");
         }
-        function onLinkedInAuth() {
+        function onLinkedInLoad() {
             
             var cpnyID = 422976; //LinkedIn's testDevCo
             IN.API.Raw("/companies/" + cpnyID + "/updates?event-type=status-update&start=0&count=10&format=json")
