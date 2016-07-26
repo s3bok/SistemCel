@@ -17,7 +17,7 @@
         }
         function onLinkedInAuth() {
             
-            var cpnyID = 422976; //LinkedIn's testDevCo
+            var cpnyID = 123456; //LinkedIn's testDevCo
             IN.API.Raw("/companies/" + cpnyID + "/updates?event-type=status-update&start=0&count=10&format=json")
                 .result(displayCompanyUpdates);
                 console.log("After auth");
