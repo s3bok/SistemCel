@@ -50,6 +50,7 @@
                 }
                
                 if (share) {
+                    var thumbnailUrl = isContent.thumbnailUrl;
                     var content = "<a target='_blank' href=" + link + ">" + title + "</a><br>" + description;
                     el += "<li><img src='" + thumbnailUrl + "' alt=''>" + content + "</li>";
                 }
