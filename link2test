@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script type="text/javascript" src="https://platform.linkedin.com/in.js">
+    api_key: 75drw12k5n8u0v
+    onLoad: onLinkedInLoad, onLinkedInAuth 
+    authorize: true 
+</script>
+</head>
+<body>
+<div id="displayUpdates"></div>
+
+    <script type="text/javascript">
+        function onLinkedInLoad() {
+            IN.Event.on(IN, "auth", onLinkedInAuth);
+            console.log("On auth");
+        }
+        function onLinkedInAuth() {
+            var cpnyID = 2414183; //LinkedIn's testDevCo
+            IN.API.Raw("/companies/" + cpnyID + "/updates?event-type=status-update&start=0&count=10&format=json")
+                .result(displayCompanyUpdates);
+                console.log("After auth");
+        }
+        function displayCompanyUpdates(result) {
+            var div = document.getElementById("displayUpdates");
+            var el = "<ul>";
+            var resValues = result.values;
+            for (var i in resValues) {
+                var share = resValues[i].updateContent.companyStatusUpdate.share;
+                var isContent = share.content;
+                var isTitled = isContent,
+                    isLinked = isContent,
+                    isDescription = isContent,
+                    isThumbnail = isContent;
+                if (isTitled) {
+                    var title = isContent.title;
+                } else {
+                    var title = "News headline";
+                }
+                if (isLinked) {
+                    var link = isContent.shortenedUrl;
+                } else {
+                    var link = "#";
+                }
+                if (isDescription) {
+                    var description = isContent.description;
+                } else {
+                    var description = "No description";
+                }
+                if (share) {
+                    var thumbnailUrl = isContent.thumbnailUrl;
+                    var content = "<a target='_blank' href=" + link + ">" + title + "</a><br>" + description;
+                    el += "<li><img src='" + thumbnailUrl + "' alt=''>" + content + "</li>";
+                }
+                console.log(share);
+            }
+            el += "</ul>";
+            div.innerHTML = el;
+        }
+        </script>
+    
+</body>
+</html>
