@@ -41,11 +41,44 @@
     var cpnyID = 2414183;
 
     IN.API.Raw("/companies/" + cpnyID + "/shares?format=json")
-      .method("POST")
-      .body(JSON.stringify(payload))
-      .result(onSuccess)
-      .error(onError);
+    .result(displayCompanyUpdates);
   }
+   function displayCompanyUpdates(result) {
+            var div = document.getElementById("displayUpdates");
+            var el = "<ul>";
+            var resValues = result.values;
+            for (var i in resValues) {
+                var share = resValues[i].updateContent.companyStatusUpdate.share;
+                var isContent = share.content;
+                var isTitled = isContent,
+                    isLinked = isContent,
+                    isDescription = isContent,
+                    isThumbnail = isContent;
+                if (isTitled) {
+                    var title = isContent.title;
+                } else {
+                    var title = "News headline";
+                }
+                if (isLinked) {
+                    var link = isContent.shortenedUrl;
+                } else {
+                    var link = "#";
+                }
+                if (isDescription) {
+                    var description = isContent.description;
+                } else {
+                    var description = "No description";
+                }
+                if (share) {
+                    var thumbnailUrl = isContent.thumbnailUrl;
+                    var content = "<a target='_blank' href=" + link + ">" + title + "</a><br>" + description;
+                    el += "<li><img src='" + thumbnailUrl + "' alt=''>" + content + "</li>";
+                }
+                console.log(share);
+            }
+            el += "</ul>";
+            div.innerHTML = el;
+        }
 
 </script>
     
