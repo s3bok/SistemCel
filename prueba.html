@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-	<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
     <script type="text/javascript" src="https://platform.linkedin.com/in.js">
     api_key: 75drw12k5n8u0v
-    onLoad: onLinkedInLoad 
+    onLoad: onLinkedInLoad, onLinkedInAuth 
     authorize: true 
-    </script>
+</script>
 </head>
-
 <body>
-    <div id="displayUpdates"></div>
+<div id="displayUpdates"></div>
 
     <script type="text/javascript">
         function onLinkedInLoad() {
@@ -48,12 +47,8 @@
                 } else {
                     var description = "No description";
                 }
-                if (isThumbnailz) {
-                    var thumbnailUrl = isContent.thumbnailUrl;
-                } else {
-                    var thumbnailUrl = "http://placehold.it/60x60";
-                }
                 if (share) {
+                    var thumbnailUrl = isContent.thumbnailUrl;
                     var content = "<a target='_blank' href=" + link + ">" + title + "</a><br>" + description;
                     el += "<li><img src='" + thumbnailUrl + "' alt=''>" + content + "</li>";
                 }
@@ -63,5 +58,6 @@
             div.innerHTML = el;
         }
         </script>
-</body> 
-	</html>
+    
+</body>
+</html>
