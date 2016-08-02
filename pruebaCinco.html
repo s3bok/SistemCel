@@ -14,7 +14,7 @@
         
         function onLinkedInLoad() {
             IN.User.authorize(onLinkedInAuth);
-            IN.Event.on(IN, "systemReady", onLinkedInAuth);
+            IN.Event.on(IN, "auth", onLinkedInAuth);
              
             console.log("On auth");
         }
