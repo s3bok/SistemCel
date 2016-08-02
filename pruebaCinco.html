@@ -11,8 +11,11 @@
 <div id="displayUpdates"></div>
 
     <script type="text/javascript">
+        
         function onLinkedInLoad() {
+            IN.User.authorize(onLinkedInAuth);
             IN.Event.on(IN, "systemReady", onLinkedInAuth);
+             
             console.log("On auth");
         }
         function onLinkedInAuth() {
