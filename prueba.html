@@ -52,8 +52,12 @@
                 } else {
                     var thumbnailUrl = "http://placehold.it/60x60";
                 }
-                if (share) {
+                  if (isThumbnail) {
                     var thumbnailUrl = isContent.thumbnailUrl;
+                } else {
+                    var thumbnailUrl = "http://placehold.it/60x60";
+                }
+                if (share) {
                     var content = "<a target='_blank' href=" + link + ">" + title + "</a><br>" + description;
                     el += "<li><img src='" + thumbnailUrl + "' alt=''>" + content + "</li>";
                 }
